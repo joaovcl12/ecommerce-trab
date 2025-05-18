@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Carrinho de Compras</h2>
+<ul class="list-group mb-4" id="carrinho"></ul>
+
+{% if session['cliente_id'] %}
+<form onsubmit="enviarPedido(event)">
+    <button class="btn btn-success">Finalizar Pedido</button>
+</form>
+{% else %}
+<p>Você precisa estar logado para finalizar o pedido.</p>
+{% endif %}
+
+<script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+<script>
+function renderCarrinho() {
+    const ul = document.getElementById("carrinho");
+    ul.innerHTML = "";
+
+    if (carrinho.length === 0) {
+        ul.innerHTML = "<li class='list-group-item text-muted'>Carrinho vazio</li>";
+        return;
+    }
+
+    let total = 0;
+
+    carrinho.forEach(p => {
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.innerHTML = `
+            <div>
+                <strong>${p.nome}</strong><br>
+                R$ ${p.preco.toFixed(2)} x ${p.quantidade}
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-outline-secondary" onclick="alterarQuantidade(${p.produto_id}, -1)">−</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="alterarQuantidade(${p.produto_id}, 1)">+</button>
+            </div>
+        `;
+        total += p.preco * p.quantidade;
+        ul.appendChild(li);
+    });
+
+    const totalLi = document.createElement("li");
+    totalLi.className = "list-group-item text-end fw-bold";
+    totalLi.textContent = `Total: R$ ${total.toFixed(2)}`;
+    ul.appendChild(totalLi);
+}
+
+async function enviarPedido(event) {
+    event.preventDefault();
+    if (carrinho.length === 0) {
+        alert("Carrinho vazio!");
+        return;
+    }
+
+    const res = await fetch("/criar_pedido", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itens: carrinho })
+    });
+
+    const data = await res.json();
+    if (data.success) {
+        alert("Pedido criado! ID: " + data.pedido_id);
+        carrinho = [];
+        salvarCarrinho();
+        renderCarrinho();
+    } else {
+        alert("Erro ao criar pedido.");
+    }
+}
+
+renderCarrinho();
+</script>
+{% endblock %}

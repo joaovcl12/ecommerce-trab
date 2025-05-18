@@ -1,0 +1,29 @@
+# Variáveis de ambiente
+.env
+
+# Arquivos Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+
+# Logs
+*.log
+
+# SQLite (se usar, não esqueça)
+*.sqlite3
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Windows
+Thumbs.db
+
+# Arquivos temporários do Python
+*.swp
+*.swo

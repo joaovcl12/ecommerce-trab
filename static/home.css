@@ -1,0 +1,32 @@
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilo base dos cards */
+.card-hover {
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    background-color: #ffffff;
+    color: #000;
+}
+
+/* Hover padrão para Produtos, Pedidos e Carrinho */
+.card-hover:hover {
+    transform: translateY(-5px);
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Hover específico para o botão de Sair */
+.card-hover-danger {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card-hover-danger:hover {
+    background-color: #bd2130 !important;
+    transform: translateY(-5px);
+}

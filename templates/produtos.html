@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Produtos Disponíveis</h2>
+<ul class="list-group" id="listaProdutos">
+    {% for produto in produtos %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            <strong>{{ produto.nome }}</strong><br>
+            R$ {{ produto.preco }}<br>
+            <small>{{ produto.descricao }}</small>
+        </div>
+        <button class="btn btn-sm btn-primary adicionar-btn"
+            data-id="{{ produto.id}}"
+            data-nome="{{ produto.nome }}"
+            data-preco="{{ produto.preco }}">
+            Adicionar
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+
+
+<script>
+console.log("SCRIPT CARREGADO");
+</script>
+<script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+{% endblock %}

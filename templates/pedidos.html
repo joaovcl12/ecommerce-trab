@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Meus Pedidos</h2>
+{% if pedidos %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Total (R$)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pedido in pedidos %}
+        <tr>
+            <td>{{ pedido.id }}</td>
+            <td>{{ pedido.data_pedido.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>{{ pedido.status }}</td>
+            <td>{{ "%.2f"|format(pedido.total) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Você ainda não fez nenhum pedido.</p>
+{% endif %}
+{% endblock %}

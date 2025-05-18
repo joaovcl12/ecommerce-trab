@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-container mt-5">
+    <div class="auth-slider" id="slider">
+        <!-- LOGIN -->
+        <form method="POST" action="/login" class="auth-form">
+            <h4>Login</h4>
+            <input name="email" class="form-control mb-2" placeholder="Email" required>
+            <input name="senha" type="password" class="form-control mb-2" placeholder="Senha" required>
+            <button class="btn btn-primary w-100">Entrar</button>
+            <div class="switch-btn">
+                <p>Ainda não tem conta? <button type="button" class="toggle" onclick="moverSlider('registro')">Cadastre-se</button></p>
+            </div>
+        </form>
+
+        <!-- REGISTRO -->
+        <form method="POST" action="/register" class="auth-form">
+            <h4>Cadastro</h4>
+            <input name="nome" class="form-control mb-2" placeholder="Nome completo" required>
+            <input name="email" class="form-control mb-2" placeholder="Email" required>
+            <input name="senha" type="password" class="form-control mb-2" placeholder="Senha" required>
+            <button class="btn btn-success w-100">Cadastrar</button>
+            <div class="switch-btn">
+                <p>Já tem conta? <button type="button" class="toggle" onclick="moverSlider('login')">Fazer login</button></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function moverSlider(para) {
+    const slider = document.getElementById("slider");
+    if (para === "registro") {
+        slider.style.transform = "translateX(-50%)";
+    } else {
+        slider.style.transform = "translateX(0%)";
+    }
+}
+</script>
+{% endblock %}

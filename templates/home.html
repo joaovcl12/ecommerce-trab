@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+<div class="text-center fade-in">
+    <h2 class="mb-4">Bem-vindo(a), {{ nome }}!</h2>
+    <div class="row justify-content-center g-4">
+
+        <!-- Produtos -->
+        <div class="col-md-3">
+            <a href="{{ url_for('produtos') }}" class="card-btn text-decoration-none">
+                <div class="card card-hover p-4 shadow-sm position-relative overflow-hidden">
+                    <h5 class="mb-0 position-relative z-1">🛍️ Produtos</h5>
+                    <div class="icon-float-container">
+                        <span class="icon-float">🛍️</span>
+                        <span class="icon-float delay-1">🛍️</span>
+                        <span class="icon-float delay-2">🛍️</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Meus Pedidos -->
+        <div class="col-md-3">
+            <a href="{{ url_for('pedidos') }}" class="card-btn text-decoration-none">
+                <div class="card card-hover p-4 shadow-sm position-relative overflow-hidden">
+                    <h5 class="mb-0 position-relative z-1">📦 Meus Pedidos</h5>
+                    <div class="icon-float-container">
+                        <span class="icon-float">📦</span>
+                        <span class="icon-float delay-1">📦</span>
+                        <span class="icon-float delay-2">📦</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Carrinho -->
+        <div class="col-md-3">
+            <a href="{{ url_for('carrinho') }}" class="card-btn text-decoration-none">
+                <div class="card card-hover p-4 shadow-sm position-relative overflow-hidden">
+                    <h5 class="mb-0 position-relative z-1">🛒 Carrinho</h5>
+                    <div class="icon-float-container">
+                        <span class="icon-float">🛒</span>
+                        <span class="icon-float delay-1">🛒</span>
+                        <span class="icon-float delay-2">🛒</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Sair -->
+        <div class="col-md-3">
+            <a href="{{ url_for('logout') }}" class="card-btn text-decoration-none">
+                <div class="card bg-danger text-white p-4 shadow-sm card-hover-danger">
+                    <h5 class="mb-0">🚪 Sair</h5>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
