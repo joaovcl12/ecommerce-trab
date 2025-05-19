@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 <div class="auth-container mt-5">
     <div class="auth-slider" id="slider">
-        <!-- LOGIN -->
+        
         <form method="POST" action="/login" class="auth-form">
             <h4>Login</h4>
             <input name="email" class="form-control mb-2" placeholder="Email" required>
@@ -13,7 +14,7 @@
             </div>
         </form>
 
-        <!-- REGISTRO -->
+        
         <form method="POST" action="/register" class="auth-form">
             <h4>Cadastro</h4>
             <input name="nome" class="form-control mb-2" placeholder="Nome completo" required>
